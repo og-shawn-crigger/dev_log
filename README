@@ -1,0 +1,57 @@
+dev_log is a real-time query analysis tool for CodeIgniter 2.
+
+Enable dev_log on your local development system to see every query run
+through CodeIgniter's ActiveRecord class.  On every page load see all
+of your queries processing in real-time including information about the
+amount of time that it took each query to run. See a preview of the
+returned dataset.
+
+A video demonstration is available at http://heybigname.com/2011/07/16/introducing-dev_log-for-codeigniter-logging/
+
+
+Install
+-------
+Put these files in the appropriate places in your application/ folder.
+
+Install Firebug and FirePHP for Firefox in order to use FirePHP logging.
+https://addons.mozilla.org/en-US/firefox/addon/firebug/
+https://addons.mozilla.org/en-US/firefox/addon/firephp/
+
+
+Test Controller
+---------------
+To use the test controller injest the big_name_toolkit.sql into your database.
+The test controller can be accessed by http://yourdomain/dev_log/dev_log_test.
+
+
+Summary Information
+-------------------
+If you want summary information then enable hooks in application/config/config.php.
+
+
+System Logging
+--------------
+For system logging verify that the log threshold is at 2 or higher in config.php.
+
+
+FirePHP Logging
+---------------
+To use FirePHP one must first install the FirePHP and FireBug extensions for Firefox.  Then, when on the site make sure that Firebug is on and that the net panel has been activated.  FirePHP won't work without the net panel enabled.  Logging will occur on the 'console' tab in Firebug.
+
+
+Notes
+-----
+dev_log only works in CI version 2.  I have no intention of making it backwards compatible.
+
+dev_log only works for the MySQL driver.
+
+If the config file doesn't load or if a config option isn't present it defaults to off.  If dev_log isn't logging then it could be because the config file isn't loaded in modules/dev_log/config/autoload.php.
+
+External Sources
+----------------
+Some code was taken directly from the following blog post by Simon Emms.
+Some of the files were modified ever so slightly.
+http://www.simonemms.com/code/extending-the-codeigniter-database-class/
+
+WireDesignz's CodeIgniter Modular Extension package was included to add module support. (Everyone should be using this).
+http://wiredesignz.co.nz/
