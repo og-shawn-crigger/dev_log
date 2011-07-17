@@ -104,7 +104,7 @@ class Dev_log
 
     public function summary_hook()
     {
-        if($this->CI->config->item('log_to_firephp')) $this->CI->firephp->log('Total query time: ' . number_format($this->query_total_process_time_milliseconds, 2) . 'ms');
+        if($this->CI->config->item('log_to_firephp') && !headers_sent()) $this->CI->firephp->log('Total query time: ' . number_format($this->query_total_process_time_milliseconds, 2) . 'ms');
         if($this->CI->config->item('log_to_system')) $this->CI->log->write_log('debug', 'Total query time: ' . number_format($this->query_total_process_time_milliseconds, 2) . 'ms');
 
         return;
@@ -113,6 +113,8 @@ class Dev_log
     // This method renders the results to FirePHP
     public function render_to_firephp()
     {
+        if(headers_sent()) return false;
+
         // Generate collapsable group
         $query_details = "SQL " . number_format($this->query_process_time_milliseconds, 2) . " ms:\n" . $this->query_sql;
 
